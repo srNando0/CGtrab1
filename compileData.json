@@ -1,0 +1,11 @@
+{
+	"libraries": [
+		"-I include/glm",
+		"-I include/stb"
+	],
+	"inputs": [
+		"src/main.cpp",
+		"src/image/image.cpp"
+	],
+	"output": "build/test.exe"
+}
