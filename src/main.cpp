@@ -11,11 +11,11 @@
 int main() {
 	Image image(640, 480);
 	
-	for (unsigned int x = 0; x < image.getWidth(); x++) {
-		for (unsigned int y = 0; y < image.getHeight(); y++) {
-			if (x < image.getWidth()/3) {
+	for (unsigned int x = 0; x < image.mWidth; x++) {
+		for (unsigned int y = 0; y < image.mHeight; y++) {
+			if (x < image.mWidth/3) {
 				image.mData[x][y] = glm::vec4(0.0, 0.0, 1.0, 1.0);
-			} else if (image.getWidth()/3 <= x && x < (2*image.getWidth())/3) {
+			} else if (image.mWidth/3 <= x && x < (2*image.mWidth)/3) {
 				image.mData[x][y] = glm::vec4(1.0, 1.0, 1.0, 1.0);
 			} else {
 				image.mData[x][y] = glm::vec4(1.0, 0.0, 0.0, 1.0);

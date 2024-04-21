@@ -65,16 +65,3 @@ std::vector<unsigned char> Image::flattenData() {
 void Image::save(char const *filename) {
 	stbi_write_png(filename, mWidth, mHeight, 4, flattenData().data(), 4*mWidth);
 }
-
-
-
-/*
-	Getters and Setters
-*/
-unsigned int Image::getWidth() {
-	return mWidth;
-}
-
-unsigned int Image::getHeight() {
-	return mHeight;
-}
