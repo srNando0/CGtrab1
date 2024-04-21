@@ -12,9 +12,9 @@ private:
 	std::vector<unsigned char> flattenData();
 
 public:
-	const unsigned int mWidth, mHeight;
+	const unsigned int width, height;
 	
-	std::vector<std::vector<glm::vec4>> mData;
+	std::vector<std::vector<glm::vec4>> data;
 	
 	Image(unsigned int width, unsigned int height);
 	void save(char const *filename);

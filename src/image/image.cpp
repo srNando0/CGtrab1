@@ -8,7 +8,7 @@
 /*
 	Constructor and Destructor
 */
-Image::Image(unsigned int width, unsigned int height) : mWidth(width), mHeight(height) {
+Image::Image(unsigned int width, unsigned int height) : width(width), height(height) {
 	createData();
 }
 
@@ -18,10 +18,10 @@ Image::Image(unsigned int width, unsigned int height) : mWidth(width), mHeight(h
 	Private Methods
 */
 void Image::createData() {
-	mData = std::vector<std::vector<glm::vec4>>(
-		mWidth,
+	data = std::vector<std::vector<glm::vec4>>(
+		width,
 		std::vector<glm::vec4>(
-			mHeight,
+			height,
 			glm::vec4(0.0)
 		)
 	);
@@ -32,9 +32,9 @@ void Image::createData() {
 std::vector<unsigned char> Image::flattenData() {
 	std::vector<unsigned char> flattenedData;
 	
-	for (unsigned int y = 0; y < mHeight; y++) {
-		for (unsigned int x = 0; x < mWidth; x++) {
-			glm::vec4 pixel255 = 255.0f*mData[x][y];
+	for (unsigned int y = 0; y < height; y++) {
+		for (unsigned int x = 0; x < width; x++) {
+			glm::vec4 pixel255 = 255.0f*data[x][y];
 			
 			flattenedData.push_back(static_cast<unsigned char>(pixel255.r));
 			flattenedData.push_back(static_cast<unsigned char>(pixel255.g));
@@ -63,5 +63,5 @@ std::vector<unsigned char> Image::flattenData() {
 	Public Methods
 */
 void Image::save(char const *filename) {
-	stbi_write_png(filename, mWidth, mHeight, 4, flattenData().data(), 4*mWidth);
+	stbi_write_png(filename, width, height, 4, flattenData().data(), 4*width);
 }

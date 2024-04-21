@@ -11,14 +11,14 @@
 int main() {
 	Image image(640, 480);
 	
-	for (unsigned int x = 0; x < image.mWidth; x++) {
-		for (unsigned int y = 0; y < image.mHeight; y++) {
-			if (x < image.mWidth/3) {
-				image.mData[x][y] = glm::vec4(0.0, 0.0, 1.0, 1.0);
-			} else if (image.mWidth/3 <= x && x < (2*image.mWidth)/3) {
-				image.mData[x][y] = glm::vec4(1.0, 1.0, 1.0, 1.0);
+	for (unsigned int x = 0; x < image.width; x++) {
+		for (unsigned int y = 0; y < image.height; y++) {
+			if (x < image.width/3) {
+				image.data[x][y] = glm::vec4(0.0, 0.0, 1.0, 1.0);
+			} else if (image.width/3 <= x && x < (2*image.width)/3) {
+				image.data[x][y] = glm::vec4(1.0, 1.0, 1.0, 1.0);
 			} else {
-				image.mData[x][y] = glm::vec4(1.0, 0.0, 0.0, 1.0);
+				image.data[x][y] = glm::vec4(1.0, 0.0, 0.0, 1.0);
 			}
 		}
 	}
