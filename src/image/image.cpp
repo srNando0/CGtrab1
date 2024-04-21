@@ -42,17 +42,6 @@ std::vector<unsigned char> Image::flattenData() {
 			flattenedData.push_back(static_cast<unsigned char>(pixel255.a));
 		}
 	}
-	/*for (const auto& column : mData) {
-		for (const auto& pixel : column) {
-			glm::vec4 pixel255 = 255.0f*pixel;
-			
-			flattenedData.push_back(static_cast<unsigned char>(pixel255.r));
-			flattenedData.push_back(static_cast<unsigned char>(pixel255.g));
-			flattenedData.push_back(static_cast<unsigned char>(pixel255.b));
-			flattenedData.push_back(static_cast<unsigned char>(pixel255.a));
-			//flattenedData.insert(flattenedData.end(), pixel.begin(), pixel.end());
-		}
-	}*/
 	
 	return flattenedData;
 }
@@ -62,6 +51,6 @@ std::vector<unsigned char> Image::flattenData() {
 /*
 	Public Methods
 */
-void Image::save(char const *filename) {
+void Image::save(const char* filename) {
 	stbi_write_png(filename, width, height, 4, flattenData().data(), 4*width);
 }
