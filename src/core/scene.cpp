@@ -12,5 +12,6 @@ glm::vec4 Scene::traceRay(Ray ray) {
 
 
 Hit Scene::computeIntersection(Ray ray) {
-	
+	glm::vec4 a;
+	return Hit(a, a, a, false, nullptr);
 }

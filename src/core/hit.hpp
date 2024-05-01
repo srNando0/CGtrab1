@@ -6,6 +6,8 @@
 
 
 
+class Material;
+
 class Hit {
 public:
 	const glm::vec4 origin;
