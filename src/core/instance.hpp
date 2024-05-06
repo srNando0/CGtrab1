@@ -1,16 +1,21 @@
 #pragma once
 
+#include <memory>
+
 #include "shape.hpp"
 #include "material.hpp"
 
 
 
-class Instance {
-private:
-	Shape mShape;
-	Material* mMaterial;
+class Material;
 
+class Instance {
 public:
-	Instance(Shape shape, Material* material);
-	~Instance();
+	std::shared_ptr<Shape> shape;
+	std::shared_ptr<Material> material;
+	
+	Instance(
+		std::shared_ptr<Shape> shape,
+		std::shared_ptr<Material> material
+	);
 };

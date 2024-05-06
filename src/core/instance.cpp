@@ -5,8 +5,7 @@
 /*
 	Constructor and Destructor
 */
-Instance::Instance(Shape shape, Material* material) : mShape(shape), mMaterial(material) {}
-
-Instance::~Instance() {
-	delete mMaterial;
-}
+Instance::Instance(
+	std::shared_ptr<Shape> shape,
+	std::shared_ptr<Material> material
+) : shape(shape), material(material) {}

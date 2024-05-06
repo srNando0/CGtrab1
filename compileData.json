@@ -1,17 +1,37 @@
 {
+	"version": "-std=c++20 -Ofast",
 	"libraries": [
 		"-I include/glm",
 		"-I include/stb"
 	],
-	"inputs": [
-		"src/main.cpp",
-		"src/image/image.cpp",
-		"src/core/scene.cpp",
-		"src/core/instance.cpp",
-		"src/core/light.cpp",
-		"src/core/ray.cpp",
-		"src/core/hit.cpp",
-		"src/core/shape.cpp"
+	"source folder": "src",
+	"objects folder": "objects",
+	"files": [
+		"main",
+		
+		"image/image",
+		
+		"core/renderer",
+		"core/film",
+		"core/camera",
+		"core/scene",
+		"core/instance",
+		"core/light",
+		"core/ray",
+		"core/hit",
+		"core/collision",
+		"core/light_ray",
+		"core/shape",
+		"core/material",
+		
+		"shapes/sphere",
+		"shapes/infinite_plane",
+		
+		"materials/test_material",
+		"materials/phong_material",
+		"materials/emissive_material",
+		
+		"lights/point_light"
 	],
 	"output": "build/test.exe"
 }

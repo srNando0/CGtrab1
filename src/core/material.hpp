@@ -1,15 +1,16 @@
 #pragma once
 
-#include <glm.hpp>
+//#include <glm.hpp>	<- scene, collision, hit, ray
 
-#include "hit.hpp"
+//#include "hit.hpp"	<- scene, collision
+#include "scene.hpp"
 
 
 
-class Hit;
+class Scene;
 
 class Material {
 public:
 	virtual ~Material();
-	virtual glm::vec4 evaluate(Hit hit, unsigned int recursion) = 0;
+	virtual glm::vec4 computeColor(Hit hit, Scene& scene, unsigned int recursion) = 0;
 };

@@ -1,26 +1,34 @@
 #pragma once
 
-#include <glm.hpp>
+//#include <glm.hpp>	<- ray
 
-#include "material.hpp"
+#include "ray.hpp"
 
 
-
-class Material;
 
 class Hit {
 public:
-	const glm::vec4 origin;
-	const glm::vec4 position;
-	const glm::vec4 normal;
+	const glm::vec3 origin;
+	const glm::vec3 position;
+	const glm::vec3 normal;
 	const bool isBackfacing;
-	const Material* const material;
 	
 	Hit(
-		glm::vec4 origin,
-		glm::vec4 position,
-		glm::vec4 normal,
-		bool isBackfacing,
-		Material* material
+		glm::vec3 origin,
+		glm::vec3 position,
+		glm::vec3 normal,
+		bool isBackfacing
 	);
+	
+	Hit(
+		Ray ray,
+		float t,
+		glm::vec3 normal,
+		bool isBackfacing
+	);
+	
+	Ray computeRay();
+	Ray computeRayFromPosition(glm::vec3 pos);
+	float computeLength();
+	float computeSquaredLength();
 };
