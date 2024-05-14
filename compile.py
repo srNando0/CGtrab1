@@ -92,7 +92,7 @@ class Compile:
 	
 	def run(self):
 		strDirname, strBasename = os.path.split(self.data['output'])
-		string = f'start cmd /k "cd {strDirname}&{strBasename}"'
+		string = f'start /min cmd /k "cd {strDirname}&{strBasename}"'
 		print(string)
 		os.system(string)
 

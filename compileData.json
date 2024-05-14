@@ -29,7 +29,12 @@
 		
 		"materials/test_material",
 		"materials/phong_material",
+		"materials/cook_torrance_material",
+		"materials/smooth_material",
+		"materials/transparent_material",
 		"materials/emissive_material",
+		
+		"materials/functions/material_functions",
 		
 		"lights/point_light"
 	],

@@ -8,14 +8,14 @@
 InfinitePlane::InfinitePlane(
 	glm::vec3 position,
 	glm::vec3 normal
-) : position(position), normal(glm::normalize(normal)) {}
+) : Shape(position), normal(glm::normalize(normal)) {}
 
 
 
 /*
 	Public Methods
 */
-std::optional<Hit> InfinitePlane::castRay(Ray ray) {
+std::optional<Hit> InfinitePlane::castRayHook(Ray ray) {
 	/*
 		n'(x - p) = 0
 		x = o + td

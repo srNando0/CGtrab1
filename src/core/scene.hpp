@@ -24,8 +24,9 @@ public:
 	std::vector<std::shared_ptr<Light>> lights;
 	glm::vec4 ambientColor;
 	glm::vec4 skyColor;
+	unsigned int maxRecursion;
 	
-	Scene(glm::vec4 ambientColor, glm::vec4 skyColor);
+	Scene(glm::vec4 ambientColor, glm::vec4 skyColor, unsigned int maxRecursion);
 	
 	glm::vec4 traceRay(Ray ray, unsigned int recursion);
 	std::optional<Collision> castRay(Ray ray);

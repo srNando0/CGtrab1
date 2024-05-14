@@ -12,8 +12,10 @@
 class Shape {
 public:
 	glm::vec3 position;
-	glm::mat4 matrix;
+	glm::mat3 matrix;
 	
+	Shape(glm::vec3 position);
 	virtual ~Shape();
-	virtual std::optional<Hit> castRay(Ray ray) = 0;
+	virtual std::optional<Hit> castRayHook(Ray ray) = 0;
+	std::optional<Hit> castRay(Ray ray);
 };

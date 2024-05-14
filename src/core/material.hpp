@@ -11,6 +11,10 @@ class Scene;
 
 class Material {
 public:
+	const bool mIsTransparent;
+	
+	Material(bool isTransparent);
 	virtual ~Material();
+	
 	virtual glm::vec4 computeColor(Hit hit, Scene& scene, unsigned int recursion) = 0;
 };

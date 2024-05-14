@@ -1,6 +1,6 @@
-#include <glm.hpp>
+#pragma once
 
-#define PI 3.141592653589793115997963468544185161590576171875
+#include <glm.hpp>
 
 
 
@@ -21,65 +21,44 @@
 
 
 namespace material {
-	glm::vec3 phong(
-		glm::vec3 view,
-		glm::vec3 normal,
+	float phong(
 		glm::vec3 light,
+		glm::vec3 normal,
+		glm::vec3 view,
+		float shininess
+	);
+
+	float beckmannD(float cosine, float alpha);
+	float ggxD(float cosine, float alpha);
+	
+	glm::vec3 fresnel(
 		glm::vec3 color,
-		float shininess
-	) {
-		glm::vec3 reflection = -glm::reflect(light, normal);
-		
-		float specular =glm::dot(reflection, view);
-		specular = fmaxf(0.0f, specular);
-		specular = powf(specular, shininess);
-		specular *= (shininess + 1.0f)/(2.0f*PI);
-		
-		
-		return specular*color;
-	}
+		float cosine
+	);
 	
-	
-	
-	glm::vec3 phong(
-		glm::vec3 view,
-		glm::vec3 normal,
+	float cookTorrangG(
 		glm::vec3 light,
+		glm::vec3 normal,
+		glm::vec3 view
+	);
+	float ggxG(
+		glm::vec3 light,
+		glm::vec3 normal,
+		glm::vec3 view,
+		float alpha
+	);
+	float ggxV(
+		glm::vec3 light,
+		glm::vec3 normal,
+		glm::vec3 view,
+		float alpha
+	);
+	
+	glm::vec3 cookTorranceGGX(
+		glm::vec3 light,
+		glm::vec3 normal,
+		glm::vec3 view,
 		glm::vec3 color,
-		float shininess
-	) {
-		glm::vec3 reflection = -glm::reflect(light, normal);
-		
-		float specular =glm::dot(reflection, view);
-		specular = fmaxf(0.0f, specular);
-		specular = powf(specular, shininess);
-		specular *= (shininess + 1.0f)/(2.0f*PI);
-		
-		
-		return specular*color;
-	}
-	
-	
-	
-	glm::vec3 cookTorrance(
-		glm::vec3 view,
-		glm::vec3 normal,
-		glm::vec3 light,
-		glm::vec3 dColor,
-		glm::vec3 sColor,
-		float shininess
-	) {
-		glm::vec3 reflection = -glm::reflect(light, normal);
-		
-		float diffusion = glm::dot(light, normal);
-		diffusion = fmaxf(0.0f, diffusion);
-		
-		float specular =glm::dot(reflection, view);
-		specular = fmaxf(0.0f, specular);
-		specular = powf(specular, shininess);
-		specular *= (shininess + 1.0f)/(2.0f*PI);
-		
-		
-		return diffusion*dColor + specular*sColor;
-	}
+		float alpha
+	);
 }

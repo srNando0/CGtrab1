@@ -7,8 +7,9 @@
 */
 Scene::Scene(
 	glm::vec4 ambientColor,
-	glm::vec4 skyColor
-) : ambientColor(ambientColor), skyColor(skyColor) {}
+	glm::vec4 skyColor,
+	unsigned int maxRecursion
+) : ambientColor(ambientColor), skyColor(skyColor), maxRecursion(maxRecursion) {}
 
 
 

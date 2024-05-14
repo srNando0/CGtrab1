@@ -14,5 +14,5 @@ class Sphere : public Shape {
 public:
 	float radius;
 	Sphere(glm::vec3 position, float radius);
-	std::optional<Hit> castRay(Ray ray);
+	std::optional<Hit> castRayHook(Ray ray);
 };

@@ -18,9 +18,18 @@
 #include "shapes/infinite_plane.hpp"
 
 #include "materials/phong_material.hpp"
+#include "materials/smooth_material.hpp"
+#include "materials/transparent_material.hpp"
+//#include "materials/cook_torrance_material.hpp"
 //#include "materials/test_material.hpp"
 
 #include "lights/point_light.hpp"
+
+
+
+/*
+	Test
+*/
 
 
 
@@ -36,8 +45,8 @@ int main() {
 	);
 	
 	std::shared_ptr<Camera> camera = std::make_shared<Camera>(
-		glm::vec3(0.0f, 10.0f, 2.0f),
-		glm::vec3(0.0f, 0.0f, 2.0f),
+		glm::vec3(3.0f, 10.0f, 0.0f),
+		glm::vec3(0.0f, 0.0f, 3.0f),
 		glm::vec3(0.0f, 0.0f, 1.0f),
 		//16.0f/9.0f,
 		4.0f/3.0f,
@@ -46,7 +55,8 @@ int main() {
 	
 	std::shared_ptr<Scene> scene = std::make_shared<Scene>(
 		glm::vec4(0.1f, 0.1f, 0.1f, 1.0f),
-		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f)
+		glm::vec4(0.0f, 0.0f, 0.0f, 1.0f),
+		3
 	);
 	
 	
@@ -54,13 +64,29 @@ int main() {
 	// instances
 	std::shared_ptr<Instance> sphere = std::make_shared<Instance>(
 		std::make_shared<Sphere>(
-			glm::vec3(0.0f, 8.0f, 2.0f),
+			glm::vec3(0.0f, 8.0f, 2.4f),
 			2.0f
 		),
-		std::make_shared<PhongMaterial>(
+		std::make_shared<TransparentMaterial>(
+			2.0f*glm::vec3(1.0f, 0.8f, 0.0f),
+			0.9f
+		)
+		/*std::make_shared<SmoothMaterial>(
+			glm::vec3(1.0f, 0.0f, 0.0f),
+			0.0f,
+			0.5f
+		)*/
+		/*std::make_shared<PhongMaterial>(
 			glm::vec3(1.0f, 0.0f, 0.0f),
 			glm::vec3(1.0f, 1.0f, 1.0f),
-			20.0f)
+			0.5f,
+			40.0f
+		)*/
+	);
+	sphere->shape->matrix = glm::mat3(
+		1.0f, 0.0f, 0.3f,
+		0.0f, 0.2f, 0.0f,
+		0.3f, 0.0f, 1.0f
 	);
 	
 	std::shared_ptr<Instance> floor = std::make_shared<Instance>(
@@ -68,10 +94,16 @@ int main() {
 			glm::vec3(0.0f, 0.0f, 0.0f),
 			glm::vec3(0.0f, 0.0f, 1.0f)
 		),
+		std::make_shared<SmoothMaterial>(
+			glm::vec3(1.0f, 1.0f, 1.0f),
+			0.0f,
+			0.0f
+		)/*
 		std::make_shared<PhongMaterial>(
-			glm::vec3(0.2f, 0.4f, 0.6f),
-			glm::vec3(0.0f, 0.0f, 0.0f),
-			4.0f)
+			glm::vec3(1.0f, 1.0f, 1.0f),
+			0.0f,
+			400.0f
+		)*/
 	);
 	
 	scene->instances.push_back(sphere);
@@ -80,12 +112,20 @@ int main() {
 	
 	
 	// lights
-	std::shared_ptr<PointLight> pointLight = std::make_shared<PointLight>(
-		1000.0f*glm::vec3(1.0f, 1.0f, 1.0f),
-		std::make_shared<Sphere>(glm::vec3(3.5f, 4.0f, 3.0f), 0.2f),
+	std::shared_ptr<PointLight> pointLight1 = std::make_shared<PointLight>(
+		20.0f*glm::vec3(1.0f, 1.0f, 1.0f),
+		std::make_shared<Sphere>(glm::vec3(3.5f, 4.0f, 4.5f), 0.2f),
 		*scene
 	);
-	scene->lights.push_back(pointLight);
+	
+	std::shared_ptr<PointLight> pointLight2 = std::make_shared<PointLight>(
+		40.0f*glm::vec3(1.0f, 1.0f, 1.0f),
+		std::make_shared<Sphere>(glm::vec3(0.0f, 40.0f, 6.0f), 0.2f),
+		*scene
+	);
+	
+	scene->lights.push_back(pointLight1);
+	scene->lights.push_back(pointLight2);
 	
 	
 	

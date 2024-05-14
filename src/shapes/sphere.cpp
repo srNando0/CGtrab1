@@ -8,18 +8,14 @@
 /*
 	Constructor and Destructor
 */
-Sphere::Sphere(glm::vec3 position, float radius) {
-	this->position = position;
-	matrix = glm::mat4();
-	this->radius = radius;
-}
+Sphere::Sphere(glm::vec3 position, float radius) : Shape(position), radius(radius) {}
 
 
 
 /*
 	Public Methods
 */
-std::optional<Hit> Sphere::castRay(Ray ray) {
+std::optional<Hit> Sphere::castRayHook(Ray ray) {
 	/*
 		Math:
 		

@@ -1,6 +1,5 @@
 #include "renderer.hpp"
 
-#include <cmath>
 #include <cstdlib>
 
 
@@ -20,7 +19,7 @@ Renderer::Renderer(
 	Private Methods
 */
 float Renderer::linearToGamma(float x) {
-	return (x <= 0.0031308f) ? (12.92f*x) : (1.055f*powf(fmaxf(0.0f, x), 1.0f/2.4f) - 0.055f);
+	return (x <= 0.0031308f) ? (12.92f*x) : (1.055f*glm::pow(glm::max(0.0f, x), 1.0f/2.4f) - 0.055f);
 }
 
 glm::vec3 Renderer::linearToGamma(glm::vec3 c) {
